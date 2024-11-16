@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="style" href="/public/mainStyle.css" />
+    <title>Blog Home</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>My Blog</h1>
+      <br />
+      <a href="/create">Create New Post</a>
+      <br />
+    </header>
+    <main>
+      <% if (posts.length > 0) { %> <% posts.forEach(post => { %>
+      <div class="post">
+        <h2><%= post.title %></h2>
+        <p><%= post.content %></p>
+        <a href="/edit/<%= post.id %>">Edit</a>
+        <form
+          action="/delete/<%= post.id %>"
+          method="POST"
+          style="display: inline"
+        >
+          <button type="submit">Delete</button>
+        </form>
+      </div>
+      <% }); %> <% } else { %>
+      <p>No posts yet! Create one <a href="/create">here</a>.</p>
+      <% } %>
+    </main>
+  </body>
+</html>
